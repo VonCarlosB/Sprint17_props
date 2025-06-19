@@ -24,11 +24,14 @@ const App = () => {
     setTasks([...newTasks])
   }
 
-  const markAsCompleted = (id) => {
-    const newTasks = tasks
-    let index = newTasks.findIndex(task => task.id===id)
-    newTasks[index].completed = true
-    setTasks([...newTasks])
+  const toggleTask = (id) => {
+    // const newTasks = tasks
+    // let index = newTasks.findIndex(task => task.id===id)
+    // newTasks[index].completed != newTasks[index].completed
+    // setTasks([...newTasks])
+    setTasks(tasks.map(task => {
+      task.id === id ? {...task, completed: !task.completed} : task
+    }))
   }
 
   return (
@@ -40,7 +43,7 @@ const App = () => {
       </li>
       {tasks.map((task) => {
         return (
-            <Task key={task.id} task={task} markAsCompleted={markAsCompleted} deleteTask={deleteTask} />
+            <Task key={task.id} task={task} toggleTask={toggleTask} deleteTask={deleteTask} />
           )
       })}
     </ul>
