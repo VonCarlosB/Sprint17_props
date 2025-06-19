@@ -5,7 +5,9 @@ function AddTaskForm({ addTask }) {
     return (<>
         <form onSubmit={(e) => {
             e.preventDefault()
+            if(!text.trim()) return
             addTask(text)
+            setText('')
         }}>
             <input type='text' placeholder='Nueva tarea' value={text} onChange={(e) => {
                 setText(e.target.value)
