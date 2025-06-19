@@ -38,6 +38,9 @@ ul{
 }
 
 .card {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
   padding: 2em;
   cursor: pointer;
 }

@@ -9,12 +9,11 @@ const App = () => {
     { id: 2, text: 'Llamar al médico', completed: true },
     { id: 3, text: 'Hacer ejercicio', completed: false }
   ]);
-  const [newTask, setNewTask] = useState('')
 
-  const addTask = () => {
+  const addTask = (text) => {
     const taskToAdd = {
       id: tasks[tasks.length-1].id+1,
-      text: newTask,
+      text,
       completed: false
     }
     setTasks([...tasks, taskToAdd])
@@ -34,20 +33,14 @@ const App = () => {
 
   return (
     <>
+    <h1>Lista de tareas</h1>
     <ul>
       <li className='card'>
-        <form onSubmit={(e) => {
-            e.preventDefault()
-            addTask()
-        }}>
-            <input type='text' placeholder='Nombre tarea' onChange={(e) => setNewTask(e.target.value)}></input>
-            <button type='submit'>Añadir tarea</button>
-        </form>
-        {/*<AddTaskForm />*/}
+        <AddTaskForm addTask={addTask}/>
       </li>
       {tasks.map((task) => {
         return (
-            <Task key={task.id} {...task, markAsCompleted, deleteTask} />
+            <Task key={task.id} task={task} markAsCompleted={markAsCompleted} deleteTask={deleteTask} />
           )
       })}
     </ul>

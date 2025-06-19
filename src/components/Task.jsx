@@ -1,4 +1,4 @@
-function Task({ task, markAsCompleted, deleteTask }) {
+function Task({ task , markAsCompleted, deleteTask }) {
     const {id, text, completed} = task
     return(
         <>
